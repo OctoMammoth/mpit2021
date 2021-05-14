@@ -122,13 +122,18 @@ const styles = StyleSheet.create({
         flexDirection: 'column'
     },
     body: {
+        // position: 'absolute',
+        // zIndex: 9999,
+        // overflow: 'hidden',
+
         display: 'flex',
         flexDirection: 'column',
 
         justifyContent: 'space-between',
 
         width: 252,
-        minHeight: '100vh',
+        height: '100vh',
+        cursor: "pointer",
         backgroundColor: '#1E192F',
         color: 'white',
         opacity: 0.95
