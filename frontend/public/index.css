@@ -1,0 +1,22 @@
+@font-face {
+  font-family: 'Jost';
+  src: url('./../src/font/Jost-VF.ttf');
+}
+
+body {
+  font-family: Jost;
+  margin: 0;
+}
+
+a {
+  font-family: Jost !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+
+/* a > div {
+  display: flex !important;
+} */

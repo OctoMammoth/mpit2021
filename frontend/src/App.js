@@ -1,20 +1,34 @@
-import NavSide from './components/NavSide/NavSide'
+import React from 'react'
+import Home from './pages/Home'
+import Dashboard from './pages/Dashboard'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+
+const linking = {
+    prefixes: [
+        /* your linking prefixes */
+    ],
+    config: {
+        screens: {
+            Home: '',
+            Profile: 'user',
+            Chat: 'chat',
+            Dashboard: 'dashboard'
+        }
+    }
+}
+
+const Stack = createStackNavigator();
 
 function App() {
   return (
-    <div style={styles.body}>
-      <NavSide active={"main"}/>
-    </div>
+    <NavigationContainer linking={linking}>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} options={{headerShown: false}}/>
+        <Stack.Screen name="Dashboard" component={Dashboard} options={{headerShown: false}}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = {
-  body: {
-    backgroundColor: "#322550",
-    display: 'flex',
-    minHeight: '100vh',
-    flexDirection: 'row',
-  }
-}
-
-export default App;
+export default App
