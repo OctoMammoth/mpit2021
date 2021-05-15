@@ -31,6 +31,7 @@ const schema = applyMiddleware(
 
 const server = new ApolloServer({
     schema,
+    playground: process.env[NODE_ENV] === "PROD" ? false : "/",
     context: (req) => {
         const { authorization } = req.req.headers
 
