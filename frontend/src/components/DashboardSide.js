@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { View, TouchableOpacity, ImageBackground, FlatList, ScrollView } from 'react-native'
+// import { useState } from 'react'
+import { View, /*TouchableOpacity,*/ ImageBackground, /*FlatList,*/ ScrollView } from 'react-native'
 
 import Image1 from './images/hack_01.png'
 
