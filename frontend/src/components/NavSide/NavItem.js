@@ -1,28 +1,25 @@
-import { useState } from 'react'
-import { TouchableOpacity } from 'react-native'
+import { View, StyleSheet } from 'react-native'
+
+import { Link } from '@react-navigation/native'
 
 const NavItem = (props) => {
-    const [hover, setHover] = useState(false)
 
-    const styles = {
+    const styles = StyleSheet.create({
         icon: {
-            width: '20px',
-            height: '20px',
-            color: props.isActive ? 'rgb(100%,100%,100%)' : 'rgb(222,214,251)',
-            opacity: props.isActive ? '95%' : '50%',
-            paddingRight: '21px'
+            width: 20,
+            height: 20,
+            opacity: props.isActive ? 0.95 : 0.5,
+            marginRight: 21
         },
         text: {
             color: props.isActive ? '#ffffff' : '#DED6FB',
-            opacity: props.isActive ? '95%' : '50%',
-            fontWeight: '600'
+            opacity: props.isActive ? 0.95 : 0.5,
+            fontWeight: 600
         },
         active: {
             backgroundColor: '#1E192F',
 
             zIndex: 2,
-
-            // boxShadow: '0 4 16 322550',
 
             shadowColor: '#322550',
             shadowOffset: {
@@ -35,47 +32,43 @@ const NavItem = (props) => {
 
             marginBottom: 8,
             paddingBottom: 14,
-            paddingTop: 14,
-            width: '100%'
+            paddingTop: 14
         },
         body: {
-            backgroundColor: hover ? `rgba(37,30,61,1)` : `rgba(37,30,61,0)`,
-            // backgroundColor: "red",
+            backgroundColor: `rgba(37,30,61,0)`,
 
             marginBottom: 8,
             paddingBottom: 14,
             paddingTop: 14,
-            width: '100%'
+            width: 1.0
         },
         inside: {
-            // margin:
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
 
-            paddingLeft: '48px'
+            paddingLeft: 48
         }
-    }
+    })
 
     return (
-        <TouchableOpacity
-            style={
-                props.isActive
-                    ? styles.active
-                    : styles.body
-            }
-            onMouseEnter={() => {
-                setHover(true)
-            }}
-            onMouseLeave={() => {
-                setHover(false)
-            }}
-        >
-            <div style={styles.inside}>
-                <props.icon opacity={styles.icon.opacity} fill={styles.icon.color} style={styles.icon} />
-                <div style={styles.text}>{props.title}</div>
-            </div>
-        </TouchableOpacity>
+        <Link to={props.link}>
+            <View
+                style={props.isActive ? styles.active : styles.body}
+            >
+                <View style={styles.inside}>
+                    {/* {props.link} */}
+                    <View style={styles.icon}>
+                        <props.icon
+                            opacity={props.isActive ? 0.95 : 0.5}
+                            fill={props.isActive ? 'rgb(255,255,255)' : 'rgb(222,214,251)'}
+                        />
+                    </View>
+
+                    <View style={styles.text}>{props.title}</View>
+                </View>
+            </View>
+        </Link>
     )
 }
 

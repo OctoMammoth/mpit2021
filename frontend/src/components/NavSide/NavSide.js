@@ -1,12 +1,15 @@
 import NavItem from './NavItem'
 
-import { TouchableOpacity } from 'react-native'
+import { View, Image } from 'react-native'
+import { Link } from '@react-navigation/native'
 
-import { ReactComponent as Logo } from './images/logo.svg'
-import { ReactComponent as Main } from './images/main.svg'
-import { ReactComponent as Message } from './images/message.svg'
-import { ReactComponent as Person } from './images/person.svg'
-import { ReactComponent as Suitcase } from './images/suitcase.svg'
+import { StyleSheet } from 'react-native'
+
+import Logo from './images/logo.jsx'
+import Main from './images/main.jsx'
+import Message from './images/message.jsx'
+import Person from './images/person.jsx'
+import Suitcase from './images/suitcase.jsx'
 
 import avatar from './../../images/avatar.png'
 
@@ -15,22 +18,25 @@ const NavSide = (props) => {
         {
             name: 'main',
             title: 'Главная',
-            icon: Main,
-            isActive: true
+            link: '/',
+            icon: Main
         },
         {
             name: 'messages',
             title: 'Сообщения',
+            link: '/chat',
             icon: Message
         },
         {
             name: 'profile',
             title: 'Профиль',
+            link: '/profile',
             icon: Person
         },
         {
             name: 'dashboard',
             title: 'Портфель',
+            link: '/dashboard',
             icon: Suitcase
         }
     ]
@@ -40,45 +46,53 @@ const NavSide = (props) => {
         else e.isActive = false
     })
 
-    console.log(items)
+    // console.log(items)
 
     return (
-        <div style={styles.body}>
-            <div style={styles.up}>
-                <Logo style={styles.logo} alt={'logo'} />
+        <View style={styles.body}>
+            <View style={styles.up}>
+                <View style={styles.logo}>
+                    <Logo />
+                </View>
                 {items.map((object) => {
                     return (
                         <NavItem
                             title={object.title}
                             icon={object.icon}
                             isActive={object.isActive}
+                            navigation={props.navigation}
+                            link={object.link}
                         />
                     )
                 })}
-            </div>
-            <TouchableOpacity style={styles.profile}>
-                <img src={avatar} alt={'avatar'} style={styles.avatar} />
-                <div>
-                    <div>Иванов Иван</div>
-                    <div style={{ color: '#fff', opacity: '50%' }}>@iivan</div>
-                </div>
-            </TouchableOpacity>
-        </div>
+            </View>
+            <View>
+                <Link to="/profile">
+                    <View
+                        style={styles.profile}
+                        onPress={() => props.navigation.navigate('profile')}
+                    >
+                        <Image source={avatar} alt={'avatar'} style={styles.avatar} />
+                        <View>
+                            <View>Иванов Иван</View>
+                            <View style={{ color: '#fff', opacity: 0.5 }}>@iivan</View>
+                        </View>
+                    </View>
+                </Link>
+            </View>
+        </View>
     )
 }
 
-const styles = {
+const styles = StyleSheet.create({
     avatar: {
-        width: '36px',
-        height: '36px',
-        borderRadius: '18px',
-        marginRight: '16px'
-    },
-    profileText: {
-        
+        width: 36,
+        height: 36,
+        borderRadius: 18,
+        marginRight: 16
     },
     profile: {
-        shadowColor: '#000',
+        shadowColor: '#000000',
         shadowOffset: { width: 0, height: -5 },
         shadowOpacity: 0.2,
         shadowRadius: 2,
@@ -89,34 +103,41 @@ const styles = {
         flexDirection: 'row',
 
         alignItems: 'center',
-        paddingLeft: '16px',
+        paddingLeft: 16,
 
-        height: '72px',
+        fontWeight: 600,
+        color: 'rgba(255,255,255,0.95)',
+
+        height: 72,
         backgroundColor: '#1E192F',
-        fontSize: '14px'
+        fontSize: 14
     },
     logo: {
-        margin: '52px 0 52px 0',
-        color: '#fff'
+        alignItems: 'center',
+        marginVertical: 52,
+        color: '#ffffff'
     },
     up: {
         display: 'flex',
-        flexDirection: 'column',
-
-        alignItems: 'center'
+        flexDirection: 'column'
     },
     body: {
+        // position: 'absolute',
+        // zIndex: 9999,
+        // overflow: 'hidden',
+
         display: 'flex',
         flexDirection: 'column',
 
         justifyContent: 'space-between',
 
-        width: '252px',
-        minHeight: '50vh',
+        width: 252,
+        height: '100vh',
+        cursor: "pointer",
         backgroundColor: '#1E192F',
         color: 'white',
-        opacity: '95%'
+        opacity: 0.95
     }
-}
+})
 
 export default NavSide
