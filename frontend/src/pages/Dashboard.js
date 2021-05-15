@@ -1,12 +1,13 @@
 import NavSide from './../components/NavSide/NavSide'
 import { StyleSheet, View } from 'react-native'
+import DashboardSide from '../components/DashboardSide'
 
 const Dashboard = (props) => {
     // console.log(props)
     return (
         <View style={styles.body}>
             <NavSide active={"dashboard"} navigation={props.navigation} />
-            dashboard
+            <DashboardSide/>
         </View>
     )
 }
