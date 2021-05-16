@@ -74,7 +74,7 @@ const NavSide = (props) => {
                     >
                         <Image source={avatar} alt={'avatar'} style={styles.avatar} />
                         <View>
-                            <View>Иванов Иван</View>
+                            <View>Геннадий Терентьев</View>
                             <View style={{ color: '#fff', opacity: 0.5 }}>@iivan</View>
                         </View>
                     </View>
